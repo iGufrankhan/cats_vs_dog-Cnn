@@ -1,15 +1,17 @@
 from flask import Flask, render_template, request, url_for
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Hide TensorFlow warnings
+
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.preprocessing import image
-import os
 import glob
 
 app = Flask(__name__)
 
 # Configuration
 UPLOAD_FOLDER = "static/uploads"
-MODEL_PATH = os.getenv("MODEL_PATH", "model/dog_cat_cnn.h5")
+MODEL_PATH = "model/dog_cat_cnn.h5"
 IMG_SIZE = (150, 150)
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -17,9 +19,9 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # Load model
 try:
     model = tf.keras.models.load_model(MODEL_PATH)
-    print(f"Model loaded successfully from {MODEL_PATH}")
+    print(f"✅ Model loaded successfully from {MODEL_PATH}")
 except Exception as e:
-    print(f"Error loading model: {e}")
+    print(f"❌ Error loading model: {e}")
     model = None
 
 def clear_upload_folder():
@@ -58,5 +60,9 @@ def index():
 
     return render_template("index.html")
 
+# FIX: Change this part
 if __name__ == "__main__":
-    app.run(debug=True)
+    print("\n" + "="*50)
+    print("🚀 Starting Flask App...")
+    print("="*50 + "\n")
+    app.run(host="0.0.0.0", port=5000, debug=True)
