@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐱 vs 🐶 AI Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐱 Cat vs Dog 🐶</h1>
+            <p class="subtitle">AI-Powered Image Classifier</p>
+        </header>
+
+        <div class="upload-section">
+            <form method="POST" enctype="multipart/form-data" id="uploadForm">
+                <div class="file-input-wrapper">
+                    <input type="file" name="image" id="imageInput" accept="image/*" required>
+                    <label for="imageInput" class="file-label">
+                        <span class="icon">📁</span>
+                        <span id="fileName">Choose an image</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn-predict">
+                    <span>Predict</span>
+                    <span class="arrow">→</span>
+                </button>
+            </form>
+            
+            <div id="preview" class="preview-container" style="display: none;">
+                <img id="previewImg" alt="Preview">
+            </div>
+        </div>
+
+        {% if error %}
+        <div class="alert error">
+            <strong>⚠️ Error:</strong> {{ error }}
+        </div>
+        {% endif %}
+
+        {% if result %}
+        <div class="result-section animate-in">
+            <h2 class="result-title">Prediction Result</h2>
+            <div class="result-card">
+                <div class="prediction">{{ result }}</div>
+                <img src="{{ image }}" alt="Uploaded image" class="result-image">
+            </div>
+            <button onclick="resetForm()" class="btn-reset">Classify Another Image</button>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>Powered by TensorFlow & Flask</p>
+    </footer>
+
+    <script>
+        // Image preview
+        const imageInput = document.getElementById('imageInput');
+        const fileName = document.getElementById('fileName');
+        const preview = document.getElementById('preview');
+        const previewImg = document.getElementById('previewImg');
+        const uploadForm = document.getElementById('uploadForm');
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                fileName.textContent = file.name;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Loading animation
+        uploadForm.addEventListener('submit', function() {
+            const btn = document.querySelector('.btn-predict');
+            btn.innerHTML = '<span>Analyzing...</span><span class="loader"></span>';
+            btn.disabled = true;
+        });
+
+        // Reset form and clear preview
+        function resetForm() {
+            // Reset file input
+            uploadForm.reset();
+            fileName.textContent = 'Choose an image';
+            
+            // Hide and clear preview
+            preview.style.display = 'none';
+            previewImg.src = '';
+            
+            // Reload page to clear results
+            location.reload();
+        }
+    </script>
+</body>
+</html>

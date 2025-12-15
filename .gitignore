@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+.venv/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Dataset and Model Files
+cats_vs_dogs/
+PetImages/
+*.h5
+*.hdf5
+kagglecatsanddogs_5340.zip
+
+# Uploaded Images
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Training Outputs
+*.png
+!sample_images.png
+!training_results.png
+!confusion_matrix.png
+
+# TensorFlow
+*.ckpt
+*.pb
+*.pbtxt
+saved_model/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Flask
+instance/
+.webassets-cache
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
