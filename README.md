@@ -22,7 +22,7 @@ A deep learning web application that classifies images as cats or dogs using CNN
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/cats-vs-dogs-cnn.git
+git clone https://github.com/iGufrankhan/cats-vs-dogs-cnn.git
 cd cats-vs-dogs-cnn
 
 # Create virtual environment
@@ -135,12 +135,6 @@ MIT License - Free to use and modify
 
 ---
 
-## 👨‍💻 Author
 
-**Your Name**  
-📧 your.email@example.com  
-🔗 [GitHub](https://github.com/yourusername) | [LinkedIn](https://linkedin.com/in/yourprofile)
-
----
 
 **Made with ❤️ and Python** | ⭐ Star if you like it!
